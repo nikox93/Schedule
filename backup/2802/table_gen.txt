@@ -1,0 +1,103 @@
+echo "<table border=\"1\" cellpadding=\"5\" id=\"shedule\">";
+				for($r=1; $r <= $n; $r++) { // по строкам
+					echo "<tr>";
+					for($c=1; $c <= $m; $c++) {	// по столбцам
+					
+					/* √енераци€ заголовка таблицы */
+						if($r == 1) {
+						echo "<th id=\"$r$c\">"; 
+						include('include/header_table_schedule.php');
+						echo "</th>";
+					/* √енераци€ остальное части таблицы */
+						} else {
+							echo "<td id=\"$r$c\">";
+									// внутри каждой €чейки генерируетс€ таблица, в которой будут выводитс€ зан€ти€
+									echo "<table>";	
+									echo "<tbody>";	
+									
+									/* ------ –аспредел€ем расписание по дн€м ----------- */
+									for ($i=0; $i<$num_rows; $i++){ //цикл по запис€м расписани€ группы
+									
+if(($day[$i]+2) == $c && ($lesson[$i]+1) == $r && 
+strtotime($date_today) >= strtotime($start_date[$i]) && 
+strtotime($date_today) <= strtotime($end_date[$i])) { // проверка соответстви€ трем параметрам - день, пара и временной интервал
+																						
+											if($podgr[$i] == 1) {
+												
+											/* ------ –аспредел€ем расписание по недел€м ----------- */					
+												switch($id_week[$i]) {
+										
+												case 1: /* зан€тие по верхней неделе */
+													
+													echo "<td class=\"up_week_undergroup\">";
+													include("include/cell_material.php");
+													echo "</td>";	
+													break;							
+										
+												case 2: /* зан€тие по нижней неделе */
+													
+													echo "<td class=\"low_week_undergroup\">";
+													include("include/cell_material.php");
+													echo "</td>";
+													break;
+										
+												case 3: /* ≈женедельное зан€тие */
+													
+													echo "<td>";				
+													include("include/cell_material.php");
+													echo "</td>";	
+													break;
+													
+												} /* end case of id_week */												
+												
+											} else {
+												
+												switch($id_week[$i]) {
+										
+												case 1: /* зан€тие по верхней неделе */
+													
+													echo "<tr>";
+													echo "<td class=\"up_week\" colspan=\"100%\">";
+													include("include/cell_material.php");
+													echo "</td>";	
+													echo "</tr>";
+													break;							
+										
+												case 2: /* зан€тие по нижней неделе */
+													
+													echo "<tr>";
+													echo "<td class=\"low_week\" colspan=\"100%\">";
+													include("include/cell_material.php");
+													echo "</td>";
+													echo "</tr>";
+													break;
+										
+												case 3: /* ≈женедельное зан€тие */
+													
+													echo "<tr>";
+													echo "<td colspan=\"100%\">";				
+													include("include/cell_material.php");
+													echo "</td>";	
+													echo "</tr>";
+													break;
+												
+												} /* end case of id_week */		
+											
+											} /* end if-else of podgr */
+											
+										} 	/* end for if for days, lessons and time interval */	
+					
+								}  /* end cycle for num_rows */
+								 
+								echo "</tbody>";
+								echo "</table>";
+							echo "</td>";	
+							} /* end else */
+						} /* end cycle for c */
+					echo "</tr>";
+					}  /* end cycle for r */
+				echo "</table>";
+				
+/*-------------------- —крипт заполнени€ таблицы данными - дн€ми и временем ----------------*/
+
+echo "<script type=\"text/javascript\" src=\"js/form_shedule.js\"></script>";

@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link type="text/javascript" rel="stylesheet" href="css/style.css"/>
+<script type="text/javascript" src="../js/jquery-1.9.0.min.js"></script>
+<title>Работа с датами</title>
+<script type="text/javascript">
+//Формат даты YY-MM-DD
+	var day_begin = 01;
+	var month_begin = 09;
+	var year_begin = 2014;
+var begin = Date.UTC(year_begin, month_begin, day_begin); 
+var td = new Date();
+	var day_today = td.getDay(); //сегодняшний день
+	var month_today = td.getMonth(); //сегодняшний месяц
+	var year_today = td.getFullYear(); // сегодняшний год
+var today = Date.UTC(year_today, month_today+1, day_today+1);
+var days = Math.floor((today-begin)/(1000*60*60*24));
+var weeks = Math.ceil((today-begin)/(1000*60*60*24*7)); 
+
+/* Вывод на экран */
+
+var id_week = weeks - parseInt(weeks/2)*2;
+
+$.post( 'jquery.php', { one: 'one', php: 'php', jquery: 'jquery' }, function (data) {
+
+alert(data);
+
+});
+
+/* $.get("test.php",{id_week:id_week},function(data) {
+	 alert(data);
+});*/
+if( id_week  == 0) {
+	window.onload = function(){
+	document.getElementById('res1').innerHTML = weeks;
+	document.getElementById('res2').innerHTML = days;
+	document.getElementById('week').innerHTML = "Нижняя";
+}
+} else {
+	window.onload = function(){
+	document.getElementById('res1').innerHTML = weeks;
+	document.getElementById('res2').innerHTML = days;
+	document.getElementById('week').innerHTML = "Верхняя";
+
+}
+}
+
+</script>
+
+</head>
+<body>
+	<div id="wrapper">
+    	<div id="date_blok">
+			<div id="res1"></div>
+			<div id="res2"></div>
+            	<div class="clear"></div>
+			<div id="week"></div>
+        </div><!-- end of date_blok -->
+	</div><!-- end of wrapper -->
+</body>
+</html>

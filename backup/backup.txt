@@ -1,0 +1,105 @@
+<?php include('menu.inc'); ?>
+
+11:
+
+/*
+			 var fac = $("select#fac option:selected").attr('value');
+            var gr = $("select#gr option:selected").attr('value');
+			var kurs = $("select#kurs option:selected").attr('value');
+            if(fac>0 && gr>0 && kurs>0)
+            {
+             var result = 
+$("select#fac option:selected").html()+' '+$("select#gr option:selected").html() +' '+$("select#kurs option:selected").html(); 
+				$("#result_1").css("display","block");
+                $("#result_1").html('Расписание для: '+result);
+				$("#result").load("form_shedule.php");
+            }
+            else
+            {
+                $("#result_1").html("???????? ??? ?????!");
+            }
+            return false;
+			 }); */
+
+12:
+
+/* $("form#select_form").submit(function(){
+            var fac = $("select#fac option:selected").attr('value');
+            var gr = $("select#gr option:selected").attr('value');
+			var kurs = $("select#kurs option:selected").attr('value');
+            if(fac>0 && gr>0 && kurs>0)
+            {
+                var result = 
+$("select#fac option:selected").html()+' '+$("select#gr option:selected").html() +' '+$("select#kurs option:selected").html();
+                $("#result").html('?????????: '+result);
+            }
+            else
+            {
+                $("#result").html("?? ?????? ??????? ??? ?????!");
+            }
+            return false;
+        }); */
+
+
+
+
+for ($i=0; $i<$num_rows; $i++){ 
+									if(($day[$i]+2) == $c && ($lesson[$i]+1) == $r) {
+echo "<b>",$teacher_post[$i],"</b> ";										
+echo $teacher_last_name[$i]," ", substr($teacher_first_name[$i], 0, 2),".",substr($teacher_father_name[$i], 0, 2),"<br/>";
+									
+									echo $cr[$i],"<br/>";
+										switch($type[$i]) {
+											case 1: 
+echo "<p style=\"color:#00A220; font-weight: bold;\" title=\"$f_sub[$i]\">";
+												echo $s_sub[$i];
+												echo "</p>";
+												break;
+											
+											case 2: 
+echo "<p style=\"color:#FF8000; font-weight: bold;\" title=\"$f_sub[$i]\">";
+												echo $s_sub[$i];
+												echo "</p>";
+												break;
+											
+											case 3: 
+echo "<p style=\"color:#DF0B27; font-weight: bold;\" title=\"$f_sub[$i]\">";
+												echo $s_sub[$i];
+												echo "</p>";
+												break;
+										} /* end case */
+
+									} 	/* end if */	 
+								}  /* end for */
+
+
+
+
+
+
+
+
+
+echo "<b>",$teacher_post[$i],"</b>","</br>";										
+echo $teacher_last_name[$i]," ", substr($teacher_first_name[$i], 0, 2),".",substr($teacher_father_name[$i], 0, 2),"<br/>";
+									
+										echo $cr[$i],"<br/>";
+														switch($type[$i]) {
+																	case 1: 
+												echo "<p style=\"color:#00A220; font-weight: bold; margin: 1px;\" title=\"$f_sub[$i]\">";
+															echo $s_sub[$i];
+															echo "</p>";
+															break;
+											
+																	case 2: 
+												echo "<p style=\"color:#FF8000; font-weight: bold; margin: 1px;\" title=\"$f_sub[$i]\">";
+															echo $s_sub[$i];
+															echo "</p>";
+															break;
+											
+																	case 3: 
+												echo "<p style=\"color:#DF0B27; font-weight: bold; margin: 1px;\" title=\"$f_sub[$i]\">";
+															echo $s_sub[$i];
+															echo "</p>";
+															break;
+														} /* end case of type */
